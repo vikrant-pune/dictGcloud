@@ -14,7 +14,7 @@ class dictCloud:
         :return: array of string with multiple definitions
         """
 
-        return [f"Getting defination of {word}"]
+        return [f"Getting defination  of {word}"]
 
 
 def getUserIp():
