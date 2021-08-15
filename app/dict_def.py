@@ -19,8 +19,8 @@ class dictCloud:
 
 def getUserIp():
     myDict = dictCloud()
-    exit = False
-    while not exit:
+    exit_val = False
+    while not exit_val:
         word = input("Enter word :")
 
         if word.strip() == "bye":
