@@ -1,9 +1,9 @@
 import click
 
 
-# @click.group()
+@click.group()
 def main():
-    while (True)
+    # while (True)
     pass
 
 
