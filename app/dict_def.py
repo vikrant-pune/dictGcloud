@@ -9,7 +9,7 @@ class dictCloud:
 
     def getDefination(self, word: str) -> list:
         """
-
+            Get Defination from wordpress
         :param word: Input string to get word definitions
         :return: array of string with multiple definitions
         """
