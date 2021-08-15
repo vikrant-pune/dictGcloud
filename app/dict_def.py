@@ -23,7 +23,7 @@ def getUserIp():
     while not exit_val:
         word = input("Enter word :")
 
-        if word.strip() == "by2e":
+        if word.strip() == "bye":
             # print("BBye!")
             sys.exit("BBye!")
 
