@@ -1,38 +1,61 @@
+"""
+ Get user input and call API to get defination
+ """
 import sys
+import os
+from dotenv import load_dotenv
+
+import requests
 
 
-class dictCloud:
+class DictCloud:
+    """
+        Stores information about API keys and urls
+    """
 
     def __init__(self):
-        api_key = ""
-        url = ""
+        self.config = load_dotenv()
+        self.api_key = os.environ.get("API_KEY")
+        self.url = "https://www.dictionaryapi.com/api/v3/references/collegiate/json/"
 
-    def getDefination(self, word: str) -> list:
+    def get_definition(self, word: str) -> list:
         """
             Get Definition from wordpress
         :param word: Input string to get word definitions
         :return: array of string with multiple definitions
         """
 
-        return [f"Getting defination  of {word}"]
+        response = requests.get(url=(self.url + word.strip()), params={"key": self.api_key})
+        definitions = []
+
+        resp = response.json()
+
+        for word_ in resp:
+            definitions = definitions + word_.get("shortdef")
+
+        return definitions
 
 
-def getUserIp():
-    myDict = dictCloud()
+def get_user_ip():
+    """
+    Get user word and shows it's definition
+    :return:
+    """
+    my_dict = DictCloud()
     exit_val = False
     while not exit_val:
         word = input("Enter word :")
 
         if word.strip() == "bye":
-            # print("BBye!")
             sys.exit("BBye!")
 
-        definitions = myDict.getDefination(word.strip())
+        definitions = my_dict.get_definition(word.strip())
 
+        num = 1
         for definition in definitions:
-            print(definition)
+            print(f"{num}. " + definition)
+            num += 1
 
 
 if __name__ == '__main__':
-
-    getUserIp()
+    get_user_ip()
